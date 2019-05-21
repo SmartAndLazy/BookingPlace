@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BookingPlaceAPI</name>
+    </assembly>
+    <members>
+        <member name="M:BookingPlaceAPI.Controllers.BookingPlaceController.GetOrganizationData(System.String,System.Double,System.Double)">
+            <summary> Метод получения данных об организации </summary>
+            <param name="name"></param>
+            <param name="latitude"></param>
+            <param name="longitude"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookingPlaceAPI.Controllers.BookingPlaceController.RegisterUser(BookingPlaceAPI.ViewModels.RegisterUserVM)">
+            <summary> Метод регистрации пользователя </summary>
+            <response code="200"> id пользователя </response>
+            <response code="409 : 1"> Пользователь уже зарегистрирован </response>
+            <response code="500"> Произошла ошибка сервера </response>
+            <param name="registerUserVM"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookingPlaceAPI.Controllers.BookingPlaceController.LoginUser(BookingPlaceAPI.ViewModels.LoginUserVM)">
+            <summary> Метод логина пользователя </summary>
+            <response code="200"> Информация о пользователе </response>
+            <response code="401"> Неверно указан логин или пароль </response>
+            <response code="500"> Произошла ошибка сервера </response>
+            <param name="loginUserVM"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookingPlaceAPI.Controllers.BookingPlaceController.Rate(BookingPlaceAPI.ViewModels.RateVM)">
+            <summary> Оставить отзыв </summary>
+            <response code="200"> Отзыв сохранен </response>
+            <response code="400"> Некорректные входные данные </response>
+            <response code="500"> Произошла ошибка сервера </response>
+            <param name="rateVM"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookingPlaceAPI.Controllers.BookingPlaceController.BookingPlace(BookingPlaceAPI.ViewModels.BookingPlaceVM)">
+            <summary> Забронировать </summary>
+            <response code="200"> Забронировано </response>
+            <response code="400"> Некорректные входные данные </response>
+            <response code="409 : 1"> Организация не найдена по указанному Id </response>
+            <response code="409 : 2"> Некорректные входные данные </response>
+            <response code="500"> Произошла ошибка сервера </response>
+            <param name="bookingPlaceVM"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookingPlaceAPI.Controllers.BookingPlaceController.GetOrganizationBookingDetail(System.Int32,System.String)">
+            <summary> Метод получения детальной информации по бронированию на день для организации </summary>
+            <param name="organizationId"></param>
+            <param name="day"></param>
+            <response code="400"> Некорректные входные данные </response>
+            <response code="409 : 1"> Организация не найдена по указанному Id </response>
+            <response code="500"> Произошла ошибка сервера </response>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
