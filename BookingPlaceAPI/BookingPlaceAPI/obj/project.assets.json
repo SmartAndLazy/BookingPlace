@@ -12008,11 +12008,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\BookingPlace\\BookingPlace\\BookingPlaceAPI\\BookingPlaceAPI\\BookingPlaceAPI.csproj",
+      "projectUniqueName": "C:\\Hack\\BookingPlace\\BookingPlaceAPI\\BookingPlaceAPI\\BookingPlaceAPI.csproj",
       "projectName": "BookingPlaceAPI",
-      "projectPath": "C:\\BookingPlace\\BookingPlace\\BookingPlaceAPI\\BookingPlaceAPI\\BookingPlaceAPI.csproj",
+      "projectPath": "C:\\Hack\\BookingPlace\\BookingPlaceAPI\\BookingPlaceAPI\\BookingPlaceAPI.csproj",
       "packagesPath": "C:\\Users\\1\\.nuget\\packages\\",
-      "outputPath": "C:\\BookingPlace\\BookingPlace\\BookingPlaceAPI\\BookingPlaceAPI\\obj\\",
+      "outputPath": "C:\\Hack\\BookingPlace\\BookingPlaceAPI\\BookingPlaceAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
