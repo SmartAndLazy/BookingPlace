@@ -1,0 +1,16 @@
+C:\BookingPlace\BookingPlace\BookingPlaceAPI\BookingPlaceAPI\bin\Debug\netcoreapp2.1\BookingPlaceAPI.deps.json
+C:\BookingPlace\BookingPlace\BookingPlaceAPI\BookingPlaceAPI\bin\Debug\netcoreapp2.1\BookingPlaceAPI.runtimeconfig.json
+C:\BookingPlace\BookingPlace\BookingPlaceAPI\BookingPlaceAPI\bin\Debug\netcoreapp2.1\BookingPlaceAPI.runtimeconfig.dev.json
+C:\BookingPlace\BookingPlace\BookingPlaceAPI\BookingPlaceAPI\bin\Debug\netcoreapp2.1\BookingPlaceAPI.dll
+C:\BookingPlace\BookingPlace\BookingPlaceAPI\BookingPlaceAPI\obj\Debug\netcoreapp2.1\BookingPlaceAPI.csprojAssemblyReference.cache
+C:\BookingPlace\BookingPlace\BookingPlaceAPI\BookingPlaceAPI\obj\Debug\netcoreapp2.1\BookingPlaceAPI.csproj.CoreCompileInputs.cache
+C:\BookingPlace\BookingPlace\BookingPlaceAPI\BookingPlaceAPI\obj\Debug\netcoreapp2.1\BookingPlaceAPI.RazorAssemblyInfo.cache
+C:\BookingPlace\BookingPlace\BookingPlaceAPI\BookingPlaceAPI\obj\Debug\netcoreapp2.1\BookingPlaceAPI.RazorAssemblyInfo.cs
+C:\BookingPlace\BookingPlace\BookingPlaceAPI\BookingPlaceAPI\obj\Debug\netcoreapp2.1\BookingPlaceAPI.AssemblyInfoInputs.cache
+C:\BookingPlace\BookingPlace\BookingPlaceAPI\BookingPlaceAPI\obj\Debug\netcoreapp2.1\BookingPlaceAPI.AssemblyInfo.cs
+C:\BookingPlace\BookingPlace\BookingPlaceAPI\BookingPlaceAPI\obj\Debug\netcoreapp2.1\BookingPlaceAPI.RazorTargetAssemblyInfo.cache
+C:\BookingPlace\BookingPlace\BookingPlaceAPI\BookingPlaceAPI\bin\Debug\netcoreapp2.1\BookingPlaceAPI.xml
+C:\BookingPlace\BookingPlace\BookingPlaceAPI\BookingPlaceAPI\bin\Debug\netcoreapp2.1\BookingPlaceAPI.pdb
+C:\BookingPlace\BookingPlace\BookingPlaceAPI\BookingPlaceAPI\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+C:\BookingPlace\BookingPlace\BookingPlaceAPI\BookingPlaceAPI\obj\Debug\netcoreapp2.1\BookingPlaceAPI.dll
+C:\BookingPlace\BookingPlace\BookingPlaceAPI\BookingPlaceAPI\obj\Debug\netcoreapp2.1\BookingPlaceAPI.pdb
