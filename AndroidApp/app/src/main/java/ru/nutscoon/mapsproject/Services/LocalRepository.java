@@ -24,15 +24,19 @@ public class LocalRepository implements ILocalRepository {
     }
 
     @Override
+    public void remove(String key){
+        SharedPreferences.Editor editor = sPref.edit();
+        editor.remove(key);
+        editor.apply();
+    }
+
+    @Override
     public <T> T getValue(String key, Class<T> type) {
-        Log.e("!INFORMATION ABOUT JSON", key);
         String json = sPref.getString(key, null);
-       // Log.e("!INFORMATION ABOUT JSON", json);
 
         if(json == null){
             return null;
         }
-        Log.e("!INFORMATION ABOUT JSON", json);
         return  gson.fromJson(json, type);
     }
 }

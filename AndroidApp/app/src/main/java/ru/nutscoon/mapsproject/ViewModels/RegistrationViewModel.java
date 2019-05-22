@@ -36,7 +36,7 @@ public class RegistrationViewModel extends ViewModel {
     public ILocalRepository localRepository;
 
     public void registerUser(String name, String surname, String phone, String password){
-        String passwordHash = null;
+        String passwordHash;
         try {
             passwordHash = getHash(password);
         } catch (NoSuchAlgorithmException e) {
@@ -59,7 +59,6 @@ public class RegistrationViewModel extends ViewModel {
                     public void accept(Response<User> integerResponse) {
                         if(integerResponse.isSuccessful()){
                             registratinResultLiveData.postValue(integerResponse.body());
-                            localRepository.saveValue("user", integerResponse.body());
                         }else {
                             registratinResultLiveData.postValue(null);
                         }
@@ -72,10 +71,5 @@ public class RegistrationViewModel extends ViewModel {
         md.update(s.getBytes());
         byte[] digest = md.digest();
         return new String(digest);
-    }
-
-    public enum RegistrationResult {
-        SUCCESS,
-        ERROR
     }
 }

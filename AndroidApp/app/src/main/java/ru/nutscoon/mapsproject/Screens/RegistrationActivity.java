@@ -78,7 +78,7 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable User user) {
                 if(user != null){
-                    Toast.makeText(getApplicationContext(), "Вы успешно зарешестрировались", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Вы успешно зарегистрировались", Toast.LENGTH_SHORT).show();
                     finish();
                 }else{
                     Toast.makeText(getApplicationContext(), "Не удаслось выполнить регистрацию.", Toast.LENGTH_SHORT).show();

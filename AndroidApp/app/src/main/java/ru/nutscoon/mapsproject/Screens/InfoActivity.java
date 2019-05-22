@@ -47,6 +47,7 @@ public class InfoActivity extends AppCompatActivity {
     private RatingBar ratingBar;
     private TextView username;
     private TextView login;
+    private TextView logout;
     private TextView name;
     private TextView type;
     private TextView address;
@@ -57,6 +58,7 @@ public class InfoActivity extends AppCompatActivity {
     private TextView addCommetn;
     private Button bookBtn;
     LinearLayout commentContainer;
+    LinearLayout loginContainer;
 
     private int orgId;
 
@@ -86,8 +88,10 @@ public class InfoActivity extends AppCompatActivity {
         description = findViewById(R.id.org_description);
         space = findViewById(R.id.org_space);
         commentContainer = findViewById(R.id.org_comment_container);
+        loginContainer = findViewById(R.id.org_login_container);
         username = findViewById(R.id.org_username);
         login = findViewById(R.id.org_login);
+        logout = findViewById(R.id.org_logout);
         bookBtn = findViewById(R.id.org_book_btn);
         addCommetn = findViewById(R.id.org_add_comment);
         bookBtn.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +106,14 @@ public class InfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(InfoActivity.this, LoginActivity.class));
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.logout();
+                loginContainer.setVisibility(View.GONE);
+                login.setVisibility(View.VISIBLE);
             }
         });
         addCommetn.setOnClickListener(new View.OnClickListener() {
@@ -160,11 +172,13 @@ public class InfoActivity extends AppCompatActivity {
             public void onChanged(@Nullable String userName) {
                 if(userName != null){
                     login.setVisibility(View.GONE);
+                    loginContainer.setVisibility(View.VISIBLE);
                     username.setVisibility(View.VISIBLE);
                     username.setText(userName);
                 }else {
                     login.setVisibility(View.VISIBLE);
                     username.setVisibility(View.GONE);
+                    loginContainer.setVisibility(View.GONE);
                 }
             }
         });
@@ -178,30 +192,6 @@ public class InfoActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private  void  getAddress()
-    {
-        GeoCoordinate tracy = new GeoCoordinate( lat,lon);
-        GeocodeRequest request = new GeocodeRequest(mOrgName).setSearchArea(tracy, 5000);
-        request.execute(new ResultListener<List<GeocodeResult>>() {
-            @Override
-            public void onCompleted(List<GeocodeResult> results, ErrorCode error) {
-                if (error != ErrorCode.NONE) {
-                    Log.e("HERE", error.toString());
-                } else {
-                    if (results != null && results.size() > 0) {
-                        final GeocodeResult res = results.get(0);
-                        InfoActivity.this.runOnUiThread(new Runnable() {
-                            public void run() {
-                                address.setText(res.getLocation().getAddress().getText());
-                            }
-                        });
-                        return;
-                    }
-                }
-                }
-            });
     }
 
     private void fillScreen(final OrganizationData organizationData, boolean isRecreate){

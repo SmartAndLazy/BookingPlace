@@ -15,31 +15,46 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_marginLeft="70dp"
                 android:layout_marginRight="70dp"
                 android:background="@drawable/gradient_bg"
-                android:layout_margin="8dp">
-
-                <TextView
-                    android:id="@+id/org_username"
+                android:layout_margin="8dp"
+                android:padding="4dp">
+                <LinearLayout
+                    android:id="@+id/org_login_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:background="@drawable/gradient_bg"
-                    android:textColor="@android:color/white"
-                    android:visibility="gone"/>
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/org_username"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:textSize="18sp"
+                        android:layout_gravity="start"
+                        android:textColor="@android:color/white"/>
+                    <TextView
+                        android:id="@+id/org_logout"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:layout_gravity="end"
+                        android:text="Выйти"
+                        android:textColor="@android:color/white"/>
+                </LinearLayout>
                 <TextView
                     android:id="@+id/org_login"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
+                    android:gravity="center"
                     android:textSize="18sp"
                     android:layout_gravity="center"
                     android:text="Войти"
-                    android:background="@drawable/gradient_bg"
-                    android:textColor="@android:color/white"
-                    />
+                    android:textColor="@android:color/white"/>
 
             </LinearLayout>
 

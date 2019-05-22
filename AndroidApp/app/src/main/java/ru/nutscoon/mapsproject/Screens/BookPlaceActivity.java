@@ -19,10 +19,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.Locale;
 
 import ru.nutscoon.mapsproject.Models.User;
 import ru.nutscoon.mapsproject.R;
@@ -33,6 +31,8 @@ public class BookPlaceActivity extends AppCompatActivity {
     BookPlaceViewModel viewModel;
 
     private int orgId;
+    private String dateToSend;
+    private String timeToSend;
 
     private TextView date;
     private TextView time;
@@ -77,8 +77,8 @@ public class BookPlaceActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(validate()){
-                    viewModel.bookPlace(orgId, date.getText().toString(),
-                            time.getText().toString(),
+                    viewModel.bookPlace(orgId, dateToSend,
+                            timeToSend,
                             name.getText().toString(),
                             surname.getText().toString(),
                             phone.getText().toString());
@@ -89,7 +89,7 @@ public class BookPlaceActivity extends AppCompatActivity {
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(BookPlaceActivity.this, d,
+                new DatePickerDialog(BookPlaceActivity.this, onDateSetListener,
                         dateAndTime.get(Calendar.YEAR),
                         dateAndTime.get(Calendar.MONTH),
                         dateAndTime.get(Calendar.DAY_OF_MONTH)).show();
@@ -98,7 +98,7 @@ public class BookPlaceActivity extends AppCompatActivity {
         time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new TimePickerDialog(BookPlaceActivity.this, t, dateAndTime.get(Calendar.HOUR_OF_DAY), dateAndTime.get(Calendar.MINUTE), true).show();
+                new TimePickerDialog(BookPlaceActivity.this, onTimeSetListener, dateAndTime.get(Calendar.HOUR_OF_DAY), dateAndTime.get(Calendar.MINUTE), true).show();
             }
         });
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -171,34 +171,27 @@ public class BookPlaceActivity extends AppCompatActivity {
                 || (phone.length() == 11 && phone.matches("\\d+"));
     }
 
-    private Date parseDate(String s){
-        SimpleDateFormat parser = new SimpleDateFormat("dd.yyyy.MM");
-        try {
-            return parser.parse(s);
-        } catch (ParseException e) {
-            return null;
-        }
-    }
-
-    TimePickerDialog.OnTimeSetListener t = new TimePickerDialog.OnTimeSetListener() {
+    TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
         @Override
-        public void onTimeSet(TimePicker timePicker, int i, int i1) {
-            time.setText(i + ":" + i1);
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            String timeToShow = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
+            timeToSend = String.format(Locale.getDefault(), "%02d:%02d:00", hourOfDay, minute);
+            time.setText(timeToShow);
             isTimeSelected = true;
         }
     };
 
-    DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
+    DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
         @Override
-        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-            String d = String.format("%02d", i2) + "." + String.format("%02d", (i1 + 1)) + "." + String.format("%02d", i);
-            date.setText(d);
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            month += 1;
+            String dateToShow = String.format(Locale.getDefault(),"%02d.%02d.%d", dayOfMonth, month, year);
+            dateToSend = String.format(Locale.getDefault(),"%02d.%02d.%d", month, dayOfMonth, year);
+            date.setText(dateToShow);
             isDateSelected = true;
             Intent intent = new Intent(BookPlaceActivity.this, HoursActivity.class);
-            //add userId
-          //  intent.putExtra("id", user)
             intent.putExtra("id", orgId);
-            intent.putExtra("date", d);
+            intent.putExtra("date", dateToSend);
             startActivityForResult(intent,1);
         }
     };
@@ -208,8 +201,9 @@ public class BookPlaceActivity extends AppCompatActivity {
         if (data == null) {
             return;
         }
-        String name = data.getStringExtra("time");
-        time.setText(name);
+        String time = data.getStringExtra("time");
+        timeToSend = time;
+        this.time.setText(time);
         isTimeSelected = true;
     }
 

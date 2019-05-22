@@ -99,10 +99,6 @@ public class InfoViewModel extends ViewModel {
         return getUser() != null;
     }
 
-    private User getUser(){
-        return localRepository.getValue("user", User.class);
-    }
-
     public void loadUserName() {
         User user = getUser();
         if(user == null){
@@ -110,6 +106,14 @@ public class InfoViewModel extends ViewModel {
         }else {
             loginStatus.postValue(user.getName() + " " + user.getSurname());
         }
+    }
+
+    public void logout(){
+        localRepository.remove("user");
+    }
+
+    private User getUser(){
+        return localRepository.getValue("user", User.class);
     }
 
     public enum GetInfoResult {
