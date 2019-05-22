@@ -66,7 +66,7 @@ public class BookPlaceViewModel extends ViewModel {
                         if(integerResponse.isSuccessful()){
                             bookPlaceResultLiveData.postValue(1);
                         }else {
-                            bookPlaceResultLiveData.postValue(1);
+                            bookPlaceResultLiveData.postValue(-1);
                         }
                     }
                 });
