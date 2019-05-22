@@ -10,7 +10,7 @@ public class BookingInformation {
         this.name = clientName;
         this.surname = clientSurname;
         this.phone = clientPhone;
-        this.numberOfTables = 0;
+        this.numberOfTables = 1;
     }
 
     public int getOrganizationId() {

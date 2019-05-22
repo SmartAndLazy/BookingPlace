@@ -191,7 +191,7 @@ public class BookPlaceActivity extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-            String d = i2 + "." + (i1 + 1) + "." + i;
+            String d = String.format("%02d", i2) + "." + String.format("%02d", (i1 + 1)) + "." + String.format("%02d", i);
             date.setText(d);
             isDateSelected = true;
             Intent intent = new Intent(BookPlaceActivity.this, HoursActivity.class);
