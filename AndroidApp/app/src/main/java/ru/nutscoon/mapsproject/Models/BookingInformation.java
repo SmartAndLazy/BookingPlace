@@ -1,22 +1,51 @@
 package ru.nutscoon.mapsproject.Models;
 
-import java.util.Date;
 
 public class BookingInformation {
 
-    public BookingInformation(int orgId, Date date, String time, String clientName, String clientSurname, String clientPhone) {
-        this.orgId = orgId;
+    public BookingInformation(int orgId, String date, String time, String clientName, String clientSurname, String clientPhone) {
+        this.organizationId = orgId;
         this.date = date;
-        this.time = time;
-        this.clientName = clientName;
-        this.clientSurname = clientSurname;
-        this.clientPhone = clientPhone;
+        this.fromTime = time;
+        this.name = clientName;
+        this.surname = clientSurname;
+        this.phone = clientPhone;
+        this.numberOfTables = 0;
     }
 
-    private int orgId;
-    private Date date;
-    private String time;
-    private String clientName;
-    private String clientSurname;
-    private String clientPhone;
+    public int getOrganizationId() {
+        return organizationId;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getFromTime() {
+        return fromTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public int getNumberOfTables() {
+        return numberOfTables;
+    }
+
+    private int organizationId;
+    private String date;
+    private String fromTime;
+    private String name;
+    private String surname;
+    private String phone;
+    private int numberOfTables;
 }

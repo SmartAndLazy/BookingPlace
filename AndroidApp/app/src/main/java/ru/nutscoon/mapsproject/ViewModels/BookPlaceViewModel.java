@@ -50,20 +50,22 @@ public class BookPlaceViewModel extends ViewModel {
         }
     }
 
-    public void bookPlace(int orgId, Date date, String time, String clientName, String clientSurname, String clientPhone){
+    public void bookPlace(int orgId, String date, String time, String clientName, String clientSurname, String clientPhone){
         apiService.bookPlace(new BookingInformation(orgId, date, time, clientName, clientSurname, clientPhone))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError(new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) {
-
+                        bookPlaceResultLiveData.postValue(1);
                     }
                 })
-                .subscribe(new Consumer<Response<Integer>>() {
+                .subscribe(new Consumer<Response<Void>>() {
                     @Override
-                    public void accept(Response<Integer> integerResponse) throws Exception {
+                    public void accept(Response<Void> integerResponse) {
                         if(integerResponse.isSuccessful()){
+                            bookPlaceResultLiveData.postValue(1);
+                        }else {
                             bookPlaceResultLiveData.postValue(1);
                         }
                     }

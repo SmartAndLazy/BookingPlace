@@ -6,8 +6,16 @@ public class OrganizationData {
     private String name;
     private double rating;
     private WorkingTimes workingTimes;
+    private String workingTimeStr;
+
     private String description;
     private String address;
+    private String categories;
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
 
     private String phone;
     private int countOfAvailablePlacement;
@@ -22,6 +30,14 @@ public class OrganizationData {
 
     public UserRating[] getUserRatings() {
         return userRatings;
+    }
+
+    public String getCategories() {
+        return categories;
+    }
+
+    public String getWorkingTimeStr() {
+        return workingTimeStr;
     }
 
 

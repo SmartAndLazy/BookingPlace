@@ -21,8 +21,8 @@ public interface IApiService {
                                                                @Path("latitude") double lat,
                                                                @Path("longitude") double lon);
 
-    @POST("url")
-    Observable<Response<Integer>> bookPlace(@Body BookingInformation bookingInformation);
+    @POST("/api/BookingPlace/BookingPlace")
+    Observable<Response<Void>> bookPlace(@Body BookingInformation bookingInformation);
 
     @POST("/api/BookingPlace/rate")
     Observable<Response<OrganizationData>> postComment(@Body Comment comment);

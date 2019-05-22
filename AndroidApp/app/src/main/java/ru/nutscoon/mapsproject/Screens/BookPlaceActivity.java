@@ -77,8 +77,8 @@ public class BookPlaceActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(validate()){
-                    viewModel.bookPlace(orgId, parseDate(date.getText().toString()),
-                            time.getText().toString() + ":00",
+                    viewModel.bookPlace(orgId, date.getText().toString(),
+                            time.getText().toString(),
                             name.getText().toString(),
                             surname.getText().toString(),
                             phone.getText().toString());
@@ -115,7 +115,12 @@ public class BookPlaceActivity extends AppCompatActivity {
         viewModel.getBookPlaceResultLiveData().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable Integer integer) {
-                Toast.makeText(getApplicationContext(), "Место забронированно", Toast.LENGTH_SHORT).show();
+                if(integer == 1){
+                    Toast.makeText(getApplicationContext(), "Место забронированно", Toast.LENGTH_SHORT).show();
+                    finish();
+                }else {
+                    Toast.makeText(getApplicationContext(), "Не удалось забронировать место", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         viewModel.getUserLiveData().observe(this, new Observer<User>() {
@@ -139,7 +144,11 @@ public class BookPlaceActivity extends AppCompatActivity {
         setErrorOnEditText(surnameInputLayout, surname, surnameValid, "Введите фамилию");
         setErrorOnEditText(phoneInputLayout, phone, phoneValid, "Введите телефон");
 
-        return nameValid && surnameValid && phoneValid && isDateSelected && isDateSelected;
+        if(!isDateSelected){
+            Toast.makeText(getApplicationContext(), "Выбирете дату", Toast.LENGTH_SHORT).show();
+        }
+
+        return nameValid && surnameValid && phoneValid && isDateSelected && isTimeSelected;
     }
 
     private void setErrorOnEditText(TextInputLayout textInput, EditText et, boolean isDataValid, String error){
@@ -182,7 +191,7 @@ public class BookPlaceActivity extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-            String d = i2 + "." + i1 + "." + i;
+            String d = i2 + "." + (i1 + 1) + "." + i;
             date.setText(d);
             isDateSelected = true;
             Intent intent = new Intent(BookPlaceActivity.this, HoursActivity.class);

@@ -37,6 +37,7 @@ import com.here.android.mpa.search.ErrorCode;
 import com.here.android.mpa.search.PlaceLink;
 import com.here.android.mpa.search.ResultListener;
 import com.here.android.mpa.search.SearchRequest;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -156,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
                     image.setBitmap(largeIcon);
                     MapMarker marker = new MapMarker(_currentGeoCoordinate, image);
                     map.addMapObject(marker);
-
                      PositioningManager posManager = PositioningManager.getInstance();
                     posManager.start(PositioningManager.LocationMethod.GPS_NETWORK);
                     posManager.start(PositioningManager.LocationMethod.GPS);

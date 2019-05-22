@@ -34,7 +34,6 @@ import ru.nutscoon.mapsproject.ViewModels.InfoViewModel;
 public class InfoActivity extends AppCompatActivity {
 
     private InfoViewModel viewModel;
-    private String mOrgAddress;
     private String mOrgName;
     private String orgLogoUrl;
     private double lat;
@@ -68,7 +67,6 @@ public class InfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_info);
         setupViewModel();
         Intent intent = getIntent();
-        //mOrgAddress = intent.getStringExtra("orgAddress");
         mOrgName = intent.getStringExtra("orgName");
         orgLogoUrl = intent.getStringExtra("url");
         lat = intent.getDoubleExtra("latitude", 0);
@@ -123,8 +121,13 @@ public class InfoActivity extends AppCompatActivity {
                 }
             }
         });
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                makeCall(phone.getText().toString());
+            }
+        });
 
-      //  Picasso.get().load(orgLogoUrl).into(logo);
     }
 
     @Override
@@ -201,21 +204,31 @@ public class InfoActivity extends AppCompatActivity {
             });
     }
 
-    private void fillScreen(OrganizationData organizationData, boolean isRecreate){
+    private void fillScreen(final OrganizationData organizationData, boolean isRecreate){
         orgId = organizationData.getId();
         name.setText(organizationData.getName());
         phone.setText(organizationData.getPhone());
         address.setText(organizationData.getAddress());
-      //  getAddress();
-        OrganizationData.WorkingTimes workingTimesData = organizationData.getWorkingTimes();
-        if(organizationData != null){
-            String workingTimesText ="Часы работы "+ workingTimesData.getFrom() + " - " + workingTimesData.getTo();
-            workingTimes.setText(workingTimesText);
-        }
+        type.setText(organizationData.getCategories());
+        workingTimes.setText(organizationData.getWorkingTimeStr());
         description.setText(organizationData.getDescription());
         String spaceText = "Свободных мест: " + organizationData.getCountOfAvailablePlacement() + " из " + organizationData.getTotalSpaceCount();
         space.setText(spaceText);
         ratingBar.setRating((float)organizationData.getRating());
+        if(organizationData.getUrl() != null){
+            name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    openUrl(name.getText().toString());
+                }
+            });
+        }
+        name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openUrl(organizationData.getUrl());
+            }
+        });
 
         UserRating[] comments = organizationData.getUserRatings();
 
@@ -278,5 +291,10 @@ public class InfoActivity extends AppCompatActivity {
         usernameTv.setText(username);
         textTv.setText(text);
         return v;
+    }
+
+    private void makeCall(String phone){
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+        startActivity(intent);
     }
 }
