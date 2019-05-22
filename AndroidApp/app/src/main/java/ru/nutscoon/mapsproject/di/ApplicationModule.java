@@ -50,7 +50,7 @@ public class ApplicationModule {
     }
 
     private Retrofit getRetrofitForApiService(){
-        return getRetrofit("http://bookingplace.azurewebsites.net");
+        return getRetrofit("https://bookingplaceserverapi.azurewebsites.net");
     }
 
     private Retrofit getRetrofit(String url){
