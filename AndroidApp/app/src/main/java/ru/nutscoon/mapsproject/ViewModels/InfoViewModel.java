@@ -50,24 +50,23 @@ public class InfoViewModel extends ViewModel {
     @Inject
     public ILocalRepository localRepository;
 
-    public void getOrganizationInfo(double lat, double lon, String orgName){
+    public void getOrganizationInfo(final double lat, final double lon, final String orgName){
         apiService.getOrganizationInfo(orgName, lat, lon)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnError(new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) {
-                        infoResultLiveData.postValue(GetInfoResult.ERROR);
-                    }
-                })
                 .subscribe(new Consumer<Response<OrganizationData>>() {
                     @Override
                     public void accept(Response<OrganizationData> organizationDataApiResult) {
-                        if(organizationDataApiResult.isSuccessful()){
+                        if (organizationDataApiResult.isSuccessful()) {
                             organizationDataLiveData.postValue(organizationDataApiResult.body());
-                        }else {
+                        } else {
                             infoResultLiveData.postValue(GetInfoResult.ERROR);
                         }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        infoResultLiveData.postValue(GetInfoResult.ERROR);
                     }
                 });
     }
